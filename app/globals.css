@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .section{
+    @apply max-w-lg md:max-w-7xl max-xl:px-5 mx-auto;
+  }
+}
+
+body{
+  color: white;
+  background-color: black;
+  position: relative;
+}
