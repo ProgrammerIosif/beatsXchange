@@ -1,0 +1,24 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum ProductCategory {
+  HeadPhones
+  Speakers
+  Accesories
+}
+
+model Product {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  category ProductCategory
+  name String
+  brand String
+  image String
+  price Float
+  discount Int?
+}

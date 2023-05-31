@@ -18,8 +18,8 @@ function Nav() {
           </li>
         {/* desktop only*/}
           <Link href="/shop" className="pr-5 cursor-pointer py-5 max-lg:hidden">Shop</Link>
-          <li className="pr-5 cursor-pointer py-5 max-lg:hidden">Products </li>
-          <li className="pr-5 cursor-pointer py-5 max-lg:hidden">Contact </li>
+          <Link href="/headphones" className="pr-5 cursor-pointer py-5 max-lg:hidden">HeadPhones</Link>
+          <Link href="/speakers" className="pr-5 cursor-pointer py-5 max-lg:hidden">Speakers</Link>
           <li className="max-lg:hidden py-5"><Link href='/pricing'>Cart</Link></li>
         </ul>
         <div className="flex max-lg:hidden">
@@ -60,74 +60,20 @@ export default Nav
 
 const content = [
   {
-    title: 'Get Started',
-    links: [
-      {
-        name: 'Sign Up',
-        link: '/start'
-      },
-      {
-        name: 'Log In',
-        link: '/log-in'
-      },
-      {
-        name: 'Plans & Pricing',
-        link: '/pricing'
-      }
-    ]
-  },
-  {
     title: 'Products',
-    y: 178,
     links: [
       {
-        name: 'WordPress Hosting',
-        link: '/hosting'
+        name: 'Headphones',
+        link: '/headphones'
       },
       {
-        name: 'Domain Names',
-        link: '/domains'
+        name: 'Speakers',
+        link: '/speakers'
       },
       {
-        name: 'Website Builder',
-        link: '/website-builder'
-      },
-      {
-        name: 'Create a Blog',
-        link: '/create-blog'
-      },
-      {
-        name: 'Professional Email',
-        link: '/professional-email'
+        name: 'Shop',
+        link: '/shop'
       }
     ]
   },
-  {
-    title: 'Features',
-    y: 286,
-    links: [
-      {
-        name: 'Overview',
-        link: '/features'
-      },
-      {
-        name: 'Google Apps',
-        link: '/google'
-      }
-    ]
-  },
-  {
-    title: 'Resources',
-    y: 404,
-    links: [
-      {
-        name: 'Logo Maker',
-        link: '/logo-maker',
-      },
-      {
-        name: 'Business Name Generator',
-        link: '/business-name-generator'
-      }
-    ]
-  }
 ]
