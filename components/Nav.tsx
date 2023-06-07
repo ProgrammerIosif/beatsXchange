@@ -5,7 +5,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 
-function Nav() {
+export default function Nav() {
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
   return (
     <nav className="sticky top-0 z-50 bg-black">
@@ -69,8 +69,6 @@ function Nav() {
     </nav>
   )
 }
-
-export default Nav
 
 const content = [
   {

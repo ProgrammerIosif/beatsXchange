@@ -107,3 +107,32 @@ const questions = [
       </div>
 */
 
+
+/*
+import { PrismaClient, Product } from '@prisma/client'
+const prisma = new PrismaClient()
+
+
+async function main() {
+  const product: Product = await prisma.product.create({
+    data: {
+      name: 'Kanto YU2 ',
+      category: 'Speakers',
+      brand: 'Kanto Living',
+      price: 289.99,
+      image: 'https://headphones.com/cdn/shop/products/KantoYU2MatteBlack1024x1024.jpg?v=1658561533',
+    },
+  })
+}
+
+main()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
+
+*/
