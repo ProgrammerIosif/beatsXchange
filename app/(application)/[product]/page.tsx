@@ -11,7 +11,7 @@ async function getProduct(productId: string) {
     return null})
 }
 
-export default async function ProductPage({params}: { params: { product: string } }) {
+export default async function Page({params}: { params: { product: string } }) {
   const product: Product | null = await getProduct(params.product)
   return product === null ? (
     <div>

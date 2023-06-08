@@ -1,6 +1,6 @@
 import Questions from "@/components/Questions";
 
-export default function Home() {
+export default function Page() {
   return (
     <main>
       <div className="mb-12 bg-[url(../public/bg.jpg)] bg-no-repeat bg-cover bg-bottom h-[calc(100vh-78px)]">

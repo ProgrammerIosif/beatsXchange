@@ -7,7 +7,7 @@ async function getProducts() {
   return products
 }
 
-export default async function Shop() {
+export default async function Page() {
   const products: Product[]  = await getProducts();
   return (
     <div className='bg-white text-black'>
