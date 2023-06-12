@@ -1,5 +1,5 @@
 import { Product } from '@prisma/client'
-import prisma from '@/prisma/client'
+import { prisma } from '@/prisma/client'
 import Link from 'next/link'
 
 async function getProducts() {
