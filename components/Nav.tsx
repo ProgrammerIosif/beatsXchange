@@ -21,7 +21,7 @@ export default function Nav() {
           <Link href="/shop" className="pr-5 cursor-pointer py-5 max-lg:hidden">Shop</Link>
           <Link href="/headphones" className="pr-5 cursor-pointer py-5 max-lg:hidden">Headphones</Link>
           <Link href="/speakers" className="pr-5 cursor-pointer py-5 max-lg:hidden">Speakers</Link>
-          <li className="max-lg:hidden py-5"><Link href='/pricing'>Cart</Link></li>
+          <li className="max-lg:hidden py-5"><Link href='/cart'>Cart</Link></li>
         </ul>
         <div className="flex items-center justify-center max-lg:hidden text-white">
           <SignedIn>
@@ -85,6 +85,10 @@ const content = [
       {
         name: 'Shop',
         link: '/shop'
+      },
+      {
+        name: 'Cart',
+        link: '/cart'
       }
     ]
   },

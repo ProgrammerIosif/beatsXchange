@@ -14,11 +14,18 @@ enum ProductCategory {
 }
 
 model Product {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id       String          @id @default(auto()) @map("_id") @db.ObjectId
   category ProductCategory
-  name String
-  brand String
-  image String
-  price Float
+  name     String
+  brand    String
+  image    String
+  price    Float
   discount Int?
+}
+
+model CartItem {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String
+  quantity  Int
+  productId String
 }
