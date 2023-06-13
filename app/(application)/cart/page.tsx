@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs"
 import { CartItem, Product} from '@prisma/client'
 import { prisma } from "@/prisma/client"
 import Button from "@/components/Button"
-import { revalidatePath } from "next/cache"
+import { removeAllCartItems } from "@/app/serverActions"
 
 async function getCartItems(userId: string) {
   const cartItems: CartItem[] = await prisma.cartItem.findMany({
@@ -20,29 +20,20 @@ async function getCartItems(userId: string) {
   return items.filter(item => item.product) as {product: Product, quantity: number}[]
 }
 
-async function removeAllCartItems(userId: string) {
-  'use server'
-  await prisma.cartItem.deleteMany({
-    where: {
-      userId: userId
-    }
-  })
-  revalidatePath('/cart')
-}
-
 export default async function Page() {
   const {userId} = auth();
   if (userId === null) return
+  const items = await getCartItems(userId)
   return (
     <div>
-      {getCartItems(userId).then(items => items.map(item =>
-          <div className='bg-white border border-black/10 p-2'>
+      {items.map(item =>
+          <div className='bg-white border border-black/10 p-2 text-black'>
             <img src={item.product.image} />
             <p className='text-gray-600'>{item.product.brand}</p>
             <p className='font-semibold text-lg'>{item.product.name}</p>
             <p>quantity:{item.quantity}</p>
             <p>${item.product.price}</p>
-          </div>))}
+          </div>)}
       <Button onClick={removeAllCartItems} params={userId} content='Reset Cart'/>
     </div>
   )
