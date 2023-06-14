@@ -1,21 +1,11 @@
 import { Product } from "@prisma/client"
-import { prisma } from "@/prisma/client"
-import Button from "@/components/Button"
-import { addProductToCart } from "@/app/serverActions"
-
-async function getProduct(productId: string) {
-  return prisma.product.findUnique({
-  where: {
-    id: productId,
-  }}).then(result => {
-    return result
-   }).catch(() => {
-    return null})
-}
+import { getProduct, addProductToCart } from "@/app/serverActions"
+import { auth } from "@clerk/nextjs"
 
 export default async function Page({params}: { params: { product: string } }) {
+  const {userId} = auth()
   const product: Product | null = await getProduct(params.product)
-  return product === null ? (
+  return product === null || userId === null ? (
     <div>
       Page not found
     </div>
@@ -26,7 +16,12 @@ export default async function Page({params}: { params: { product: string } }) {
           <p className='text-gray-600'>{product.brand}</p>
           <p className='font-semibold text-lg'>{product.name}</p>
           <p>${product.price}</p>
-          <Button onClick={addProductToCart} params={product.id} content='Add to cart'/>
+          <form action={addProductToCart}>
+            <input type="number" name="quantity" defaultValue='1'/>
+            <input className="hidden" type="text" name="productId" defaultValue={product.id}/>
+            <input className="hidden" type="text" name="userId" defaultValue={userId}/>
+            <button type="submit">Add to cart</button>
+          </form>
         </div>
     </div>
   )
