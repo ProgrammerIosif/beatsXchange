@@ -1,7 +1,7 @@
 'use server'
 
-import { auth } from "@clerk/nextjs";
 import { prisma } from "@/prisma/client";
+import { Product } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 export async function getProduct(productId: string) {
@@ -12,6 +12,22 @@ export async function getProduct(productId: string) {
     return result
    }).catch(() => {
     return null})
+}
+
+export async function getCartItems(userId: string) {
+  const cartItems = await prisma.cartItem.findMany({
+    where: {
+      userId: userId
+    }
+  })
+  const products = await prisma.product.findMany()
+  const items = cartItems.map(item => {
+    return {
+      product: products.find((product) => item.productId === product.id),
+      quantity: item.quantity
+    }
+  })
+  return items.filter(item => item.product) as {product: Product, quantity: number}[]
 }
 
 export async function addProductToCart(formData: FormData) {
@@ -25,8 +41,6 @@ export async function addProductToCart(formData: FormData) {
       case 'userId': userId = pair[1].toString()
     }
   }
-  console.log(quantity,productId,userId)
-  if (userId == null) return
   const itemExists = await prisma.cartItem.findFirst({
     where: {
       productId: productId,
@@ -43,6 +57,32 @@ export async function addProductToCart(formData: FormData) {
       }
     })
   }
+  else {
+    changeCartItemQuantity({userId,productId,quantity})
+  }
+}
+
+export async function changeCartItemQuantity({userId, productId, quantity}: {userId: string, productId: string, quantity: number}) {
+  await prisma.cartItem.updateMany({
+    where: {
+      userId: userId,
+      productId: productId
+    },
+    data: {
+      quantity: quantity
+    }
+  })
+  revalidatePath('/cart')
+}
+
+export async function removeCartItem({userId, productId}: {userId: string, productId: string}) {
+  await prisma.cartItem.deleteMany({
+    where: {
+      userId: userId,
+      productId: productId
+    },
+  })
+  revalidatePath('/cart')
 }
 
 export async function removeAllCartItems(userId: string) {

@@ -17,7 +17,7 @@ export default async function Page({params}: { params: { product: string } }) {
           <p className='font-semibold text-lg'>{product.name}</p>
           <p>${product.price}</p>
           <form action={addProductToCart}>
-            <input type="number" name="quantity" defaultValue='1'/>
+            <input type="number" min={1} name="quantity" defaultValue='1'/>
             <input className="hidden" type="text" name="productId" defaultValue={product.id}/>
             <input className="hidden" type="text" name="userId" defaultValue={userId}/>
             <button type="submit">Add to cart</button>
