@@ -2,7 +2,7 @@ import Questions from "@/components/Questions";
 
 export default function Page() {
   return (
-    <main>
+    <div className="bg-black text-white">
       <div className="mb-12 bg-[url(../public/bg.jpg)] bg-no-repeat bg-cover bg-bottom h-[calc(100vh-78px)]">
         <div className="section relative h-full">
           <div className="absolute max-md:top-32 md:bottom-20">
@@ -44,7 +44,7 @@ export default function Page() {
           <Questions list={questions}/>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
 

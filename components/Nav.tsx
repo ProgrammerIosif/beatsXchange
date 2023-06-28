@@ -8,21 +8,21 @@ import Image from "next/image";
 export default function Nav() {
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
   return (
-    <nav className="sticky top-0 z-50 bg-black">
+    <nav className="sticky top-0 z-50 bg-black text-white">
       <div className='flex items-center justify-between text-lg font-semibold relative py-2 section max-md:max-w-[100vw]'>
-        <ul className="flex">
-          <li>
+        <div className="flex">
+          <div>
             <Link href="/" className='font-bold text-primary z-40 flex mr-8 gap-2 pb-1 h-full text-3xl items-center justify-center'>
               <img className="w-12 lg:w-16" src="https://cdn-icons-png.flaticon.com/512/6190/6190871.png" width="80"/>
               <p>BeatsXchange</p>
             </Link>
-          </li>
+          </div>
         {/* desktop only*/}
           <Link href="/shop" className="pr-5 cursor-pointer py-5 max-lg:hidden">Shop</Link>
           <Link href="/headphones" className="pr-5 cursor-pointer py-5 max-lg:hidden">Headphones</Link>
           <Link href="/speakers" className="pr-5 cursor-pointer py-5 max-lg:hidden">Speakers</Link>
-          <li className="max-lg:hidden py-5"><a href='/cart'>Cart</a></li>
-        </ul>
+          <div className="max-lg:hidden py-5"><a href='/cart'>Cart</a></div>
+        </div>
         <div className="flex items-center justify-center max-lg:hidden text-white">
           <SignedIn>
             <UserButton showName={true} afterSignOutUrl="/"/>
