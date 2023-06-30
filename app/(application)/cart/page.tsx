@@ -42,7 +42,7 @@ export default async function Page() {
                 </div>
               </div>
               <div className="w-60 flex gap-2 items-center justify-center">
-                <p>${item.product.price * item.quantity}</p>
+                <p>${Number(item.product.price * item.quantity).toFixed(2)}</p>
                 <Button onClick={removeCartItem} params={{userId: userId, productId: item.product.id}} style="px-2 pb-0.5 bg-gray-300 hover:bg-gray-600 hover:text-white rounded-full aspect-square flex items-center justify-center" content='x'/>
               </div>
             </div>)}

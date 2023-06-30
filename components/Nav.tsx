@@ -5,7 +5,11 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Nav() {
+export default function Nav({
+  cartBadge = 0
+}: {
+  cartBadge?: number
+}) {
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
   return (
     <nav className="sticky top-0 z-50 bg-black text-white">
@@ -21,7 +25,10 @@ export default function Nav() {
           <Link href="/shop" className="pr-5 cursor-pointer py-5 max-lg:hidden">Shop</Link>
           <Link href="/headphones" className="pr-5 cursor-pointer py-5 max-lg:hidden">Headphones</Link>
           <Link href="/speakers" className="pr-5 cursor-pointer py-5 max-lg:hidden">Speakers</Link>
-          <div className="max-lg:hidden py-5"><a href='/cart'>Cart</a></div>
+          <div className="max-lg:hidden py-5 flex items-start gap-1">
+            <a href='/cart'>Cart</a>
+            <div className={cartBadge !== 0 ? 'h-4 w-4 text-sm rounded-full bg-red-600 flex items-center justify-center' : 'hidden'}>{cartBadge}</div>
+          </div>
         </div>
         <div className="flex items-center justify-center max-lg:hidden text-white">
           <SignedIn>

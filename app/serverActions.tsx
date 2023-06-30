@@ -60,6 +60,7 @@ export async function addProductToCart(formData: FormData) {
   else {
     changeCartItemQuantity({userId,productId,quantity})
   }
+  revalidatePath('/shop')
 }
 
 export async function changeCartItemQuantity({userId, productId, quantity}: {userId: string, productId: string, quantity: number}) {

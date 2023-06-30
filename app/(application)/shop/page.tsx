@@ -14,14 +14,14 @@ export default async function Page() {
       <div></div>
       <div className='grid gap-5 bg-gray-100 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6'>
         {products.map(product =>
-          <Link href={product.id}>
+          <a href={product.id}>
             <div className='bg-white border border-black/10 p-2'>
               <img src={product.image} />
               <p className='text-gray-600'>{product.brand}</p>
               <p className='font-semibold text-lg'>{product.name}</p>
               <p>${product.price}</p>
             </div>
-          </Link>)}
+          </a>)}
       </div>
     </div>
   )
